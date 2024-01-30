@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Money Tracker</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="/script.js"></script>
+
+  <style>
+    .custom-btn {
+      font-weight: bold;
+      border-width: 2px;
+      font-size: 1.2rem; /* Adjust the font size as needed */
+    }
+
+    .expense-data {
+    font-size: 0.9rem; /* Adjust the font size for the expense data */
+  }
+  </style>
+
+</head>
+
+
+<body>
+
+  <div class="container">
+    <h1 class="mt-5 mb-4 text-center display-4 font-weight-bold font-italic">Money Tracker</h1>
+  
+    <form action="/addExpense" method="post" onsubmit="return showConfirmation()">
+      <div class="form-group">
+        <!-- Removed the label for "Description" -->
+        <input type="text" class="form-control" id="description" name="description" placeholder="Enter description" required>
+      </div>
+  
+      <div class="form-group" style="margin-bottom: 15px;">
+        <!-- Removed the label for "Amount" -->
+        <input type="number" class="form-control" id="amount" name="amount" placeholder="Enter amount" required>
+      </div>
+  
+      <button type="submit" class="btn btn-outline-dark font-weight-bold border-2 fs-5 custom-btn">Add Expense</button>
+    </form>
+  
+    <!-- Add a confirmation message div -->
+    <div id="confirmation-message" class="alert alert-success mt-3" style="display: none;">
+      Expense added successfully!
+    </div>
+  
+    <div class="text-center">
+      <button class="btn btn-outline-dark mt-3 font-weight-bold border-2 fs-5 custom-btn" onclick="clearHistory()">Clear History</button>
+    </div>
+  
+    <h2 class="mt-4" style="color: white;">Expense History</h2>
+    <ul class="list-group">
+      <% expenses.forEach(expense => { %>
+        <li class="list-group-item text-center mb-2" style="max-width: 300px; margin: auto;">
+          <span style="color: black; display: block;">
+            <%= expense.description %> - <%= expense.amount %> - <%= expense.date.toDateString() %>
+          </span>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+  
+  <script src="/script.js"></script>
+  </body>
+
+</html>
